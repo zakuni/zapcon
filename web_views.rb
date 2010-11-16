@@ -45,6 +45,8 @@ loop do
 end
 
 i = 0
+
+
 request = Array.new
 while i < 5
   request[i] = NSURLRequest.requestWithURL(NSURL.URLWithString(url[i]))
@@ -52,15 +54,6 @@ while i < 5
   content_view.addSubview(web_views[i])
   i += 1
 end
-=begin
-request1 = NSURLRequest.requestWithURL(NSURL.URLWithString(url[1]))
-web_views[1].mainFrame.loadRequest(request1)
-content_view.addSubview(web_views[1])
-
-request2 = NSURLRequest.requestWithURL(NSURL.URLWithString(url[2]))
-web_views[2].mainFrame.loadRequest(request2)
-content_view.addSubview(web_views[2])
-=end
 
 
 # center the window
@@ -89,9 +82,9 @@ t = Thread.new do
     sum = sensors[0] + sensors[2]
     distance = sensors[2] - sensors[0]
 
-    p distance
+    puts "sensor0 = #{sensors[0]}, sensor2 = #{sensors[2]}, sum = #{sum}, distance = #{distance}"
 
-    pressed = (sensors[1] < 600 || sensors[3] < 600)
+    pressed = (sensors[1] < 700 || sensors[3] < 700)
     
     if (pressed && 900 < distance)
       unless channel == 0
@@ -111,8 +104,6 @@ t = Thread.new do
 #          end
         end
         content_view.addSubview(web_views[0])
-#        web_views[1].removeFromSuperview
-#        content_view.bringSubViewToFront(web_views[0])
 #        web_views[0].setHidden
 #        web_views[0].mainFrame.reload
         end
